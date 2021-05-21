@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<title>Activitat 4</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../w3.css">
+<script src="../w3.js"></script>
+<style>
+	code {
+		background-color: yellow;
+	}
+</style>
+<body>
+<div class="w3-container">	
+	<h1 style="text-align: center;">Activitat 4. Mòdul 1-Button: polsador</h1>
+	<h2>Informació</h2>
+	<p>Farem servir el mòdul virtual 1-button: <a href="http://localhost:5000/switch" target="_blank">http://localhost:5000/switch</a></p>
+	<img src="switch.png">
+	<p>i haureu de carregar l'arxiu <b>A4.py</b> a l'entorn de programació Python</p>
+	<p>Comproveu el que el mòdul virtual funciona correctament abans de posar-vos a manipular el codi.</p>
+	<img src="A4.png" width="100%">
+	<h2>Explicació del codi</h2>
+	<p>Aquest mòdul és molt senzill, es tracta d'un botó que puc tenir dos estats: premut (ON) i no premut (OFF).</p>
+	<p>Per saber en quin estat està el polsador, farem servir l'ordre <code>polsador()</code> Aquesta ordre tornarà un valor True si el polsador està premut i un valor False si no ho està.</p>
+	<p>Per prendre decisions en funció de l'estat del polsador farem servir l'estructura <code>if <i>condició</i>:</code> / <code>else:</code></p>
+	<h2>Codi original</h2>
+	<p>Aquí teniu una còpia del codi original per si ho perdeu fent proves i ho vulgueu recuperar:</p>
+	<textarea rows="8" cols="80">
+from D1mini import *
+while True:
+    if polsador():
+        print("El boto esta premut.")
+    else:
+        print("El boto no esta premut.")
+    time.sleep(1)
+	</textarea>
+	<h2>Activitat 4 - Què s'ha de fer?</h2>
+	<p>Seguiu els passos que hi ha a l'apartat d'Informació més a dalt per configurar l'entorn de treball.</p>
+	<p>En aquesta activitat, treballarem amb dos mòduls a l'hora:</p>
+	<p>Mòdul Buzzer: <a href="http://localhost:5000/buzzer" target="_blank">http://localhost:5000/buzzer</a></p>
+	<p>Mòdul 1-Button: <a href="http://localhost:5000/switch" target="_blank">http://localhost:5000/switch</a></p>
+	<p>El funcionament és el mateix que en les activitats anteriors, només que en aquesta treballareu amb dos mòduls.</p>
+	<p>Seríeu capaços de fer que la cançó que vau programar en l'Activitat 3 soni només quan el polsador estigui premut?</p>
+	<p>Un cop que el codi estigui preparat, verificat i faci el que es demana, lliureu l'activitat.</p>
+	
+	
+
+
+</div>
+</body>
+</html>
+

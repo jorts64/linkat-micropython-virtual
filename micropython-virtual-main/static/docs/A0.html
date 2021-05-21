@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<title>Activitat 0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../w3.css">
+<script src="../w3.js"></script>
+<style>
+	code {
+		background-color: yellow;
+	}
+</style>
+<body>
+<div class="w3-container">	
+	<h1 style="text-align: center;">Activitat 0. Mòdul DHT: sensor d'humitat i temperatura</h1>
+	<h2>Informació</h2>
+	<p>Farem servir el mòdul virtual DHT: <a href="http://localhost:5000/dht" target="_blank">http://localhost:5000/dht</a></p>
+	<img src="dht.png">
+	<p>i haureu de carregar l'arxiu <b>A0.py</b> a l'entorn de programació Python</p>
+	<p>Comproveu el que el mòdul virtual funciona correctament abans de posar-vos a manipular el codi.</p>
+	<img src="A0.png" width="100%">
+	<h2>Explicació del codi</h2>
+	<p>El programa comença amb la importació de la biblioteca <i>D1mini</i>. Aquest fitxer ha d'estar sempre a la carpeta on teniu els vostres programes, ja que s'encarrega de la comunicació amb el nostre laboratori virtual.</p>
+	<p>El bucle <code>while <i>condició</i>:</code> executa les instruccions que conté mentre la condició sigui vàlida. Com la condició que hem possat és <code>True</code> Les instruccions identades s'executaran eternament.</p>
+	<p>El mòdul DHT fa servir l'ordre <code>sensor.measure()</code> per fer un mesurament. Un cop hàgim fet aquest mesurament podem obtenir les dades d'humitat i temperatura fen servir les ordres <code>sensor.humidity()</code> i <code>sensor.temperature()</code> respectivament</p>
+	<p>Al codi es fa servir l'ordre <code>print("Text", sensor.humidity(), "Text")</code> que serveix per mostrar per consola el text que estigui entre cometes i el valor que hem capturat gràcies al mòdul DHT.</p>
+	<p>També podeu veure al codi d'exemple que hi ha una nova ordre: <code>time.sleep(X)</code>, que serveix perquè el programa esperi un número X de segons abans d'executar l'ordre següent.</p>
+	<h2>Codi original</h2>
+	<p>Aquí teniu una còpia del codi original per si ho perdeu fent proves i ho vulgueu recuperar:</p>
+	<textarea rows="8" cols="80">
+from D1mini import *
+while True:
+    sensor.measure()
+    print("La temperatura ambiental es de", sensor.temperature(), "graus Celsius")
+    print("Hi ha un", sensor.humidity(), "% d'humitat relativa")
+    time.sleep(4)
+	</textarea>
+	<h2>Activitat 0 - Què s'ha de fer?</h2>
+	<p>Seguiu els passos que hi ha a l'apartat d'Informació més a dalt per configurar l'entorn de treball.</p>
+	<p>Feu proves canviant els valors de temperatura i humitat del mòdul virtual DHT i veien com canvia la sortida a la pantalla de consola que teniu a sota.</p>
+	<p>Proveu de canviar el text que surt a la pantalla de consola.</p>
+	<p>Un cop que hàgiu fet les proves suficients i hàgiu après el funcionament de l'entorn i el mòdul, lliureu l'activitat.</p>
+	<p>Aquesta activitat no compta per la nota, però us servirà per fer proves i variacions amb el codi i familiaritzar-vos amb l'entorn per estar preparats per fer les següents activitats.</p>
+	
+
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<title>Activitat 2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../w3.css">
+<script src="../w3.js"></script>
+<style>
+	code {
+		background-color: yellow;
+	}
+</style>
+<body>
+<div class="w3-container">	
+	<h1 style="text-align: center;">Activitat 2. Mòdul RGB: leds de colors</h1>
+	<h2>Informació</h2>
+	<p>Farem servir el mòdul virtual RGB: <a href="http://localhost:5000/rgb" target="_blank">http://localhost:5000/rgb</a></p>
+	<img src="rgb.png">
+	<p>i haureu de carregar l'arxiu <b>A2.py</b> a l'entorn de programació Python</p>
+	<p>Comproveu el que el mòdul virtual funciona correctament abans de posar-vos a manipular el codi.</p>
+	<img src="A2.png" width="100%">
+	<h2>Explicació del codi</h2>
+	<p>Aquest mòdul és un conjunt de 7 leds que podem programar perquè tinguin diferents estats, encesos amb un color determinat o apagats.</p>
+	<p>Podem programar cadascun dels leds fent servir l'ordre:</p>
+	<p><code>led[X] = color['estat']</code> on</p>
+	<p><code>led[X]</code> - fa referència a un dels leds segon la seva posició. Haureu d'endevinar quin número actua amb el led corresponent/p>
+	<p><code>color['estat']</code> - on estat fa referència a l'estat que amb què volem programar el led. Pot tenir diferents colors (blanc, vermell, groc, verd, cyan, blau i magenta) o pot estar apagat.</p>
+	<p>Finalment, guardem i executem la programació que volem de cadascun dels leds fent servir l'ordre <code>led.write()</code></p>
+	<p><code>display.show()</code> - Escriu a la pantalla les ordres que em donat abans.</p>
+	<h2>Codi original</h2>
+	<p>Aquí teniu una còpia del codi original per si ho perdeu fent proves i ho vulgueu recuperar:</p>
+	<textarea rows="17" cols="80">
+from D1mini import *
+led[0] = color['blanc']
+led[1] = color['vermell']
+led[2] = color['groc']
+led[3] = color['verd']
+led[4] = color['cyan']
+led[5] = color['blau']
+led[6] = color['magenta']
+led.write()
+while True:
+    time.sleep(1)
+    led[0] = color['apagat']
+    led.write()
+    time.sleep(1)
+    led[0] = color['blanc']
+    led.write()
+	</textarea>
+	<h2>Activitat 2 - Què s'ha de fer?</h2>
+	<p>Seguiu els passos que hi ha a l'apartat d'Informació més a dalt per configurar l'entorn de treball.</p>
+	<p>Modifiqueu el codi d'exemple per aconseguir que els leds formin una creu amb leds de color vermell.</p>
+	<p>Un cop que el codi estigui preparat, verificat i faci el que es demana, lliureu l'activitat.</p>
+	<h2>Activitat 2 Extra- Què s'ha de fer?</h2>
+	<p>Aquesta és una activitat extra. No és obligatori fer-la, però si la feu, obtindreu alguns punts extres que pujaran la vostra nota final.</p>
+	<p>Seríeu capaços de fer que la creu que heu fet a l'Activitat 2, s'encengui i apagui cada segon canviant de color? És a dir que sigui una creu intermitent amb colors diferents.</p>
+	<p>Un cop que el codi estigui preparat, verificat i faci el que es demana, lliureu l'activitat.</p>
+	
+	
+
+
+</div>
+</body>
+</html>
+
