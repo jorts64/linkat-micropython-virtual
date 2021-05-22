@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<title>Història</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../w3.css">
+<script src="../w3.js"></script>
+<style>
+	code {
+		background-color: yellow;
+	}
+	p {
+		 text-align: justify;
+	}
+	p.dret {
+		 text-align: right;
+	}
+	
+</style>
+<body>
+<div class="w3-container">	
+	<h1 style="text-align: center;">Crèdits</h1>
+	<p>El laboratori virtual micropython és una eina desenvolupada al <a href="http://iepegasoviana.cat" target="_blank">INS Príncep de Viana</a> per diversos professors i alumnes del màster que han impartit classes al nostre centre.</p>
+	<p>El projecte neix l'any 2018 quan en Jose Toro i jo mateix, després d'utilitzar els mòduls <i>D1 mini</i> a Batxillerat 
+	 en <a href="https://github.com/jorts64/kit-D1-mini" target="_blank">llenguatge C amb l'entorn Arduino IDE</a>, i veient que feia poc temps s'havia creat 
+	 un <a href="http://docs.micropython.org/en/latest/esp8266/quickref.html" target="_blank">firmware micropython per al microcontrolador ESP8266</a>
+	 que incorpora el D1 mini, decidim dissenyar un entorn de treball físic, amb els mòduls reals, on els alumnes de 3r d'ESO puguin aprendre a programar d'una forma motivadora.</p>
+	<img src="oled-leds.png">
+
+	<h2>Curs 2018-19: El labortori real</h2>
+	<p>Com l'objectiu era ensenyar als alumnes les estructures de programació (bucles, decisions ...) vaig dissenyar una biblioteca que facilités l'accés al el maquinari dels mòduls <i>D1 mini</i>.
+	 D'aquí surten les ordres <code>polsador()</code>, <code>toca()</code> ...</p>
+	<textarea cols="60">
+# This file must be imported to access D1 mini hardware 
+
+import esp
+
+esp.osdebug(None)
+
+import gc
+
+#import webrepl
+
+#webrepl.start()
+
+gc.collect()
+
+import time
+import ssd1306
+from machine import I2C, Pin, PWM
+import dht12
+import neopixel
+
+i2c = I2C(-1, Pin(5), Pin(4))
+display = ssd1306.SSD1306_I2C(64, 48, i2c)
+
+sensor = dht12.DHT12()
+
+button = Pin(0)
+
+def polsador():
+   return not(button.value())
+
+freqs = {'do' : 523, 're' : 587, 'mi' : 669, 'fa' : 698, 'sol' : 784, 'la' : 880,  'si' : 988} 
+
+def toca(nota):
+   beeper = PWM(Pin(14), freq=freqs[nota], duty=512)
+   time.sleep(0.5)
+   beeper.deinit()
+
+led = neopixel.NeoPixel(Pin(15, Pin.OUT), 7)
+
+color = {'vermell' : (0x20, 0x00, 0x00) , 'groc' : (0x20, 0x20, 0x00),
+  'verd' : (0x00, 0x20, 0x00), 'cyan' : (0x00, 0x20, 0x20),
+  'blau' : (0x00, 0x00, 0x20),  'magenta' : (0x20, 0x00, 0x20),
+  'blanc' : (0x20, 0x20, 0x20), 'apagat' : (0x00, 0x00, 0x00)}
+
+	</textarea>
+	<p>En aquest curs i gràcies a l'ajut d'en Borja Diaz, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam soldar
+	 els primers 5 kits i dissenyar les primeres activitats, amb un important èxit amb aquesta promoció. En aquest curs el projecte era
+	  un <a href="ProjecteTelegraf.pdf" target="_blank">telègraf</a> i utilitzavem l'IDE <a href="https://github.com/jorts64/microPython-amb-D1-mini" target="_blank">uPyCraft</a>.</p>
+
+	<a name="1920"> </a>
+	<h2>Curs 2019-20: El labortori virtual</h2>
+	<p>En aquest curs i gràcies a l'ajut d'en Alejandro Pérez, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam voler millorar les activitats i
+	 documentació, passant a l'actual projecte de l'estació meteorològica.</p>
+	<p>Quan l'Alejandro estava a punt de c0omençar la seva actuació a les aules, ens vam trobar tots confinats a casa per la pandèmia de la COVID. Ràpidament vaig crear la primera versió d'aquest 
+	 laboratori virtual i l'Alejandro va refer la documentació. El laboratori virtual estava generat en PHP <a href="http://jorts.net">al meu servidor públic</a> i l'entorn de treball va passar a remot
+	 a <a href="https://replit.com/" target="_blank">replit</a>, que en aquella època oferia comptes gratuïts a professors i estudiants.</p>
+	<p>La clau era canviar la biblioteca <i>D1mini</i>, mantenint el nom de les funcions i fent-ne una simulació. Aquesta és la versió actual d'aquesta biblioteca:</p>
+	<textarea cols="60">
+import time
+import requests
+import json
+
+baseurl = "http://localhost:5000/"
+
+class DHTBaseI2C:
+    def __init__(self):
+        self.foo = 1
+    def measure(self):
+        foo = self.foo
+
+class DHT12(DHTBaseI2C):
+    def humidity(self):
+        res = requests.get (baseurl+'dhtHread')
+        return res.text
+
+    def temperature(self):
+        res = requests.get (baseurl+'dhtTread')
+        return res.text
+
+sensor = DHT12()
+
+def toca(nota):
+    res = requests.get (baseurl+'buzzerwrite/'+nota)
+    return
+
+def polsador():
+    res = requests.get (baseurl+'switchread')
+    return (res.text=="1")
+
+class oled(DHTBaseI2C):
+    def text(self,text,x,y):
+        myobj = {"x": x,"y": y, "text": text}
+        myjson = json.dumps(myobj)
+        res = requests.get (baseurl+'oledwrite/'+myjson)
+        time.sleep(1)
+        return 
+
+    def fill(self,color):
+        myobj = {"x": -2,"y": -2, "text": 'VOID'}
+        myjson = json.dumps(myobj)
+        res = requests.get (baseurl+'oledwrite/'+myjson)
+        time.sleep(1)
+        return 
+    def show(self):
+        return
+
+display = oled()
+
+class NeoPixel:
+    ORDER = (1, 0, 2, 3)
+
+    def __init__(self, pin, n, bpp=3):
+        self.n = n
+        self.bpp = bpp
+        self.buf = bytearray(n * bpp)
+        
+
+    def __setitem__(self, index, val):
+        offset = index * self.bpp
+        for i in range(self.bpp):
+            self.buf[offset + self.ORDER[i]] = val[i]
+
+    def __getitem__(self, index):
+        offset = index * self.bpp
+        return tuple(self.buf[offset + self.ORDER[i]] for i in range(self.bpp))
+
+    def fill(self, color):
+        for i in range(self.n):
+            self[i] = color
+
+    def write(self):
+        RGBwrite()
+
+led = NeoPixel(0, 7)
+
+pep = ["off", "off", "off", "off", "off", "off", "off"]
+
+def RGBwrite():
+    for i in range (7):
+        if (led[i][0]==1):
+            pep[i]="red"  
+        if (led[i][0]==2):
+            pep[i]="yellow"  
+        if (led[i][0]==3):
+            pep[i]="green"  
+        if (led[i][0]==4):
+            pep[i]="cyan"  
+        if (led[i][0]==5):
+            pep[i]="blue"  
+        if (led[i][0]==6):
+            pep[i]="magenta"  
+        if (led[i][0]==7):
+            pep[i]="white"  
+        if (led[i][0]==8):
+            pep[i]="off"
+    myobj = {"led0": pep[0],"led1": pep[1],"led2": pep[2],"led3": pep[3],"led4": pep[4],"led5": pep[5],"led6": pep[6]}
+    myjson = json.dumps(myobj)
+    res = requests.get (baseurl+'rgbwrite/'+myjson)
+    return
+
+color = {'vermell' : (1,0,0) , 'groc' : (2,0,0), 'verd' : (3,0,0), 'cyan' : (4,0,0), 'blau' : (5,0,0),  'magenta' : (6,0,0),'blanc' : (7,0,0), 'apagat' : (8,0,0)}
+	</textarea>
+	<p>A la #JPRE20 vam fer una ponència amb aquesta experiència de dos anys:</p>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/gm9IdGMzOkY?start=12984" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	
+	<a name="2021"> </a>
+	<h2>Curs 2020-21: El laboratori virtual autònom. Integració a la Linkat</h2>
+	<p>Vam trobar que el laboratori virtual era una gran eina. No només servia per substituir el laboratori real en temps de pandèmia, també era un ajut a l'alumne per treballar a casa. Per altra banda, després de l'èxit a la #JPRE20, volíem
+	 compartir aquesta eina am altres centres. Però el laboratori tenia un cost, econòmic (servidor a Internet) i personal (necessitat de gestionar els alumnes amb comprtes propis amb usuari i contrasenya). Per altra banda <i>replit</i>
+	  anunciava el fi dels seus comptes educatius gratuïts per finals de l'any 2020. Calia fer un pas endavant, i ràpid.</p>
+	 <p>Al curs passat la meva filla Ingrid, actualment enginyera industrial, feia una matèria a la UPC de Terrassa amb la Raspberry pi. Amb el confinament van treballar amb una màquina virtual, i em va ensenyar la potència de la
+	  biblioteca <i>Flash</i> de python, que serveix per crear servidors webs locals. Teníem la solució! Vaig traslladar el meu laboratori virtual PHP de servidor públic a codi python a un servidor local. Amb l'ajut de Gerard Homs, alumne al nostre
+	  centre del pràcticum del màster d'Educació Secundària de la UNIR, i del professor del nostre departament Miguel Lozano, vam utilitzar-lo als ordinadors dels alumnes. Les pràctiques amb micropython havíen sobreviscut un curs mes!</p>
+	 <p>Finalment, i gràcies al Dr. Joan de Gràcia, vam aconseguir tenir el laboratori virtual com un paquet de la Linkat, integrat al pefil de robòtica i fàcil d'instal·lar. Havíem aconseguit facilitar a altres centres l'ús d'aquesta eina.</p>
+	 <p>Amb la posada de llarg del nostre laboratori virtual a la Linkat vaig aprofitar per millorar la documentació, ara en format de pàgina web i integrada al servidor web local.</p>
+	 
+	 <p class="dret">Jordi Orts<br>Maig 2021</p>
+	 
+	
+	
+	
+	
+	 
+
+
+</div>
+</body>
+</html>
+
