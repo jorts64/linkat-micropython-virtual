@@ -14,20 +14,28 @@
 	p.dret {
 		 text-align: right;
 	}
+	img.left {
+		float: left;
+		padding-top: 10px;
+		padding-right: 10px;
+		padding-bottom: 10px;
+		padding-left: 3px;
+	}
 	
 </style>
 <body>
 <div class="w3-container">	
 	<h1 style="text-align: center;">Crèdits</h1>
+	<img class="left" src="princepviana.png">
 	<p>El laboratori virtual micropython és una eina desenvolupada al <a href="http://iepegasoviana.cat" target="_blank">INS Príncep de Viana</a> per diversos professors i alumnes del màster que han impartit classes al nostre centre.</p>
-	<p>El projecte neix l'any 2018 quan en Jose Toro i jo mateix, després d'utilitzar els mòduls <i>D1 mini</i> a Batxillerat 
+	<p>El projecte neix l'any 2018 quan els professors que havíem de donar 3r d'ESO al curs 2018-19 al nostre centre, en <b>Jose Toro</b> i en <b>Jordi Orts</b>, després d'utilitzar els mòduls <i>D1 mini</i> a Batxillerat 
 	 en <a href="https://github.com/jorts64/kit-D1-mini" target="_blank">llenguatge C amb l'entorn Arduino IDE</a>, i veient que feia poc temps s'havia creat 
 	 un <a href="http://docs.micropython.org/en/latest/esp8266/quickref.html" target="_blank">firmware micropython per al microcontrolador ESP8266</a>
 	 que incorpora el D1 mini, decidim dissenyar un entorn de treball físic, amb els mòduls reals, on els alumnes de 3r d'ESO puguin aprendre a programar d'una forma motivadora.</p>
 	<img src="oled-leds.png">
 
 	<h2>Curs 2018-19: El labortori real</h2>
-	<p>Com l'objectiu era ensenyar als alumnes les estructures de programació (bucles, decisions ...) vaig dissenyar una biblioteca que facilités l'accés al el maquinari dels mòduls <i>D1 mini</i>.
+	<p>Com l'objectiu era ensenyar als alumnes les estructures de programació (bucles, decisions ...) vam dissenyar una biblioteca que facilités l'accés al el maquinari dels mòduls <i>D1 mini</i>.
 	 D'aquí surten les ordres <code>polsador()</code>, <code>toca()</code> ...</p>
 	<textarea cols="60">
 # This file must be imported to access D1 mini hardware 
@@ -75,13 +83,13 @@ color = {'vermell' : (0x20, 0x00, 0x00) , 'groc' : (0x20, 0x20, 0x00),
   'blanc' : (0x20, 0x20, 0x20), 'apagat' : (0x00, 0x00, 0x00)}
 
 	</textarea>
-	<p>En aquest curs i gràcies a l'ajut d'en Borja Diaz, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam soldar
+	<p>En aquest curs i gràcies a l'ajut d'en <b>Borja Diaz</b>, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam soldar
 	 els primers 5 kits i dissenyar les primeres activitats, amb un important èxit amb aquesta promoció. En aquest curs el projecte era
 	  un <a href="ProjecteTelegraf.pdf" target="_blank">telègraf</a> i utilitzavem l'IDE <a href="https://github.com/jorts64/microPython-amb-D1-mini" target="_blank">uPyCraft</a>.</p>
 
 	<a name="1920"> </a>
 	<h2>Curs 2019-20: El labortori virtual</h2>
-	<p>En aquest curs i gràcies a l'ajut d'en Alejandro Pérez, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam voler millorar les activitats i
+	<p>En aquest curs i gràcies a l'ajut d'en <b>Alejandro Pérez</b>, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UPC, vam voler millorar les activitats i
 	 documentació, passant a l'actual projecte de l'estació meteorològica.</p>
 	<p>Quan l'Alejandro estava a punt de c0omençar la seva actuació a les aules, ens vam trobar tots confinats a casa per la pandèmia de la COVID. Ràpidament vaig crear la primera versió d'aquest 
 	 laboratori virtual i l'Alejandro va refer la documentació. El laboratori virtual estava generat en PHP <a href="http://jorts.net">al meu servidor públic</a> i l'entorn de treball va passar a remot
@@ -201,8 +209,10 @@ color = {'vermell' : (1,0,0) , 'groc' : (2,0,0), 'verd' : (3,0,0), 'cyan' : (4,0
 	 compartir aquesta eina am altres centres. Però el laboratori tenia un cost, econòmic (servidor a Internet) i personal (necessitat de gestionar els alumnes amb comprtes propis amb usuari i contrasenya). Per altra banda <i>replit</i>
 	  anunciava el fi dels seus comptes educatius gratuïts per finals de l'any 2020. Calia fer un pas endavant, i ràpid.</p>
 	 <p>Al curs passat la meva filla Ingrid, actualment enginyera industrial, feia una matèria a la UPC de Terrassa amb la Raspberry pi. Amb el confinament van treballar amb una màquina virtual, i em va ensenyar la potència de la
-	  biblioteca <i>Flash</i> de python, que serveix per crear servidors webs locals. Teníem la solució! Vaig traslladar el meu laboratori virtual PHP de servidor públic a codi python a un servidor local. Amb l'ajut de Gerard Homs, alumne al nostre
-	  centre del pràcticum del màster d'Educació Secundària de la UNIR, i del professor del nostre departament Miguel Lozano, vam utilitzar-lo als ordinadors dels alumnes. Les pràctiques amb micropython havíen sobreviscut un curs mes!</p>
+	  biblioteca <i>Flash</i> de python, que serveix per crear servidors webs locals. Teníem la solució! Vaig traslladar el meu laboratori virtual PHP de servidor públic a codi python a un servidor local. Vam canvia a l'entorn de
+	  desenvolupament <i>Thonny</i>, disponible als respositoris estàndard de les principals distribucios GNU/Linux, i que a les seva darrera versió permet treballar tant amb el laboratori virtual com amb el maquinari real. 
+	  Amb l'ajut de <b>Gerard Homs</b>, alumne al nostre centre del pràcticum del màster d'Educació Secundària de la UNIR, i del professor del nostre departament <b>Miguel Lozano</b>, vam utilitzar-lo als ordinadors dels alumnes. Les pràctiques 
+	  amb micropython havíen sobreviscut un curs mes!</p>
 	 <p>Finalment, i gràcies al Dr. Joan de Gràcia, vam aconseguir tenir el laboratori virtual com un paquet de la Linkat, integrat al pefil de robòtica i fàcil d'instal·lar. Havíem aconseguit facilitar a altres centres l'ús d'aquesta eina.</p>
 	 <p>Amb la posada de llarg del nostre laboratori virtual a la Linkat vaig aprofitar per millorar la documentació, ara en format de pàgina web i integrada al servidor web local.</p>
 	 

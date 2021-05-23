@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>Micropython</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../w3.css">
+<script src="../w3.js"></script>
+<style>
+	code {
+		background-color: yellow;
+	}
+	p {
+		 text-align: justify;
+	}
+	p.dret {
+		 text-align: right;
+	}
+	
+</style>
+<body>
+<div class="w3-container">	
+	<h1 style="text-align: center;">El llenguatge Python</h1>
+	<p><a href="https://ca.wikipedia.org/wiki/Python" target="_blank">Python</a> és un llenguatge de programació modern i molt potent. Creat al 1991, des del 2003 s'ha mantingut a la llista <i>Top Ten</i>
+	 dels llenguatges de programació. Grans organitzacions com ara Wikipedia, Google, CERN, NASA, Instagram o Amazon utilitzen aquest llenguatge als seus programes.</p>
+	<p>A l'INS Príncep de Viana utilitzem Python amb <a href="https://github.com/jorts64/Creant-jupyter-notebooks" target="_blank">Jupyter Notebooks</a> per complementar les classes de
+	 <a href="https://github.com/jorts64/Tecnologia-Industrial---Jupyter" target="_blank">Tecnologia Industrial</a> al Batxillerat.</p> 
+	<iframe src="https://kokes.github.io/nbviewer.js/viewer.html#aHR0cHM6Ly9naXRodWIuY29tL2pvcnRzNjQvVGVjbm9sb2dpYS1JbmR1c3RyaWFsLS0tSnVweXRlci9ibG9iL21hc3Rlci9USTEtMS4zX0VuZXJnaWFfbnVjbGVhci5pcHluYg==" width="100%" height="400"></iframe>
+	<p><a href="https://es.wikipedia.org/wiki/MicroPython" target="_blank">Micropython</a> és una implementació del llenguatge Python 3 optimitzada per executar-se en microcontroladors, com ara el ESP8266.</p>
+	<h2>Característiques de Python</h2>
+	<h3>Sagnat</h3>
+	<p>És la característica més distintiva de Python. Al contrari d'altres llenguatges de programació que utilitzen claus o altre simbologia per marcar els blocs, en Python un bloc de codi queda delimitat pel seu sagnat. 
+	 Thonny genera automàticaent el sagnat quan toca en fer un canvi de línia.</p>
+	<textarea cols="60" rows="9">
+# Comparativa entre if, elif i else:
+x = 3
+if x == 0: # Si x és 0
+   print('x és 0')
+elif x == 2: # Si x és 2
+   print('x és 2')
+else: # Si x no és 0 ni 2
+   print('x és un altre número')
+	</textarea>
+	<h3>Instruccions</h3>
+	<p>La instrucció <code>if</code> de l'exemple anterior executa el bloc següent si es compleix una condició. Es pot complementar amb <code>elif</code>, que executa un altre bloc si una nova condició es compleix, i amb 
+	 <code>else</code> si cap de les condicions comprovades per la instrucció <code>if</code> o les instruccions <code>elif</code> anteriors es compleixen.</p>
+	<p>La instrucció <code>for</code> que executa un bloc per a cadascun dels elements d'una llista</p>
+	<textarea cols="60" rows="5">
+fruites = ["poma", "taronja", "maduixa"]
+for x in fruites:
+  print(x)
+	</textarea>
+	<p>La funció <code>range</code> genera una seqüencia de <i>n</i> valors començant per 0</p>
+	<textarea cols="60" rows="5">
+x = range(6)
+for n in x:
+  print(n) 	
+  </textarea>
+  <p>La instrucció <code>while</code> executa un bloc si es compleix una condició</p>
+	<textarea cols="60" rows="7">
+i = 10
+while i >= 0:
+    print(i)
+    i = i-1
+print("S'ha acabat el compte enrera des de 10")	
+  </textarea>
+  <h3>Variables</h3>
+  <p>Python pot treballar amb molts tipus de variables. El tipus queda determinat quan declarem la variable.</p>
+	<textarea cols="60" rows="10">
+sencer = 5
+decimal = 3.2
+cadena = "hola"
+llista = {1,2,"poma",3.3}
+print(type(sencer))
+print(type(decimal))
+print(type(cadena))
+print(type(llista))
+  </textarea>
+  <p>De vegades hem de transformar el tipus de variable. Per exemple, el nostre sensor de temperatura ens torna el valor en forma de cadena de text. Si volem comparar aquest valor amb valors de referència en forma de nombres
+   sencers, com farem a la tercera part del nostre projecte d'estació meteorològica, haurem de convertir la variable a un valor sencer amb la funció <code>int</code>.</p>
+  <h2>Tutorials de Python en línia</h2>
+  <p>La veritat és que es molt difícil trobar materials didàctics sobre Python a Internet en català o castellà. La majoria són de pagament o restringits en el temps.</p>
+  <p>En canvi és molt fàcil trobar materials en anglès, com ara la secció de <a href="https://www.w3schools.com/python/default.asp" target="_blank">W3schools</a> dedicada a aquest llenguatge de programació.</p>
+  <p>Fins i tot podem trobar llibres gratuïts en anglès, com ara <a href="https://greenteapress.com/wp/modsimpy/" target="_blank">Modeling and Simulation in Python</a>, amb un nivell molt avançat.</p>
+  
+
+	
+
+</div>
+</body>
+</html>
+
